@@ -1,6 +1,8 @@
+
+
 function moveMapToNewYorkCity(map){
   map.setCenter({lat:40.732649357366284, lng:-73.99793998890864});
-  map.setZoom(9);
+  map.setZoom(13);
 }
 
 
