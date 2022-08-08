@@ -28,7 +28,7 @@ var map = new H.Map(document.getElementById('map'),
 
 window.addEventListener('resize', () => map.getViewPort().resize());
 
-
+console.log("Hello World"); 
 
 
 
