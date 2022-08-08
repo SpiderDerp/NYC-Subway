@@ -1,0 +1,19 @@
+{
+  "name": "nyc-subway",
+  "version": "1.0.0",
+  "description": "Website to display subway data",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpiderDerp/NYC-Subway.git"
+  },
+  "author": "Subway Surfers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpiderDerp/NYC-Subway/issues"
+  },
+  "homepage": "https://github.com/SpiderDerp/NYC-Subway#readme"
+}
