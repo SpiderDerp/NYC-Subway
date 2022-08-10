@@ -1,0 +1,23 @@
+{
+  "cell-service": [
+    [
+      "8th st",
+      "AT&T",
+      "4G/5Ge",
+      4
+    ],
+    [
+      "14th st",
+      "AT&T",
+      "4G/5Ge",
+      3
+    ]
+  ],
+  "weather-hazard-data": [
+    [
+      "snow",
+      "Trash blocking drainage",
+      3
+    ]
+  ]
+}

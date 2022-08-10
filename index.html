@@ -10,11 +10,32 @@
     <link rel="stylesheet" type="text/css" href="demo.css" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <link rel="stylesheet" type="text/css" href="../template.css" />
-    <script type="text/javascript" src='../test-credentials.js'></script>    
+    <script type="text/javascript" src='../test-credentials.js'></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCrdfKW_VJjlwWUud7FMbBSeKqVguVOHCU",
+        authDomain: "nyc-subways-740bc.firebaseapp.com",
+        databaseURL: "https://nyc-subways-740bc-default-rtdb.firebaseio.com",
+        projectId: "nyc-subways-740bc",
+        storageBucket: "nyc-subways-740bc.appspot.com",
+        messagingSenderId: "951924846678",
+        appId: "1:951924846678:web:51b8232cddb24df3ab4bf7",
+        measurementId: "G-SVLTBBE7B2"
+      };
+      firebase.initializeApp(config);
+      var starCountRef = firebase.database().ref('cell-service.json');
+      var fs = require('fs');
+      starCountRef.on('value', (snapshot) => {
+        const data = snapshot.val().toString();
+      });
+    </script>
   </head>
   <body id="markers-on-the-map">
     <div id="map"></div>

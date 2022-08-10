@@ -1,5 +1,5 @@
 #map {
-    width: 90%;
+    width: 100%;
     height: 900px;
     background: grey;
 }
@@ -7,4 +7,75 @@
 #panel {
     width: 100%;
     height: 100%;
+}
+
+/** Style for the info bubble content */
+.H_ib {
+  position: absolute;
+  left: .91em;
+  left: -100%;
+  width: 50%;
+}
+
+.H_ib_body {
+  background: #E0E1DD;
+  margin-right: -3em;
+  left: -50%;
+  right: 50%;
+}
+
+/** Style for the info bubble tail */
+.H_ib.H_ib_top .H_ib_tail::after {
+  border-color: #E0E1DD transparent;
+}
+.H_ib_content {
+  color: #E0E1DD;
+}
+
+.H_ib_close svg.H_icon {
+}
+
+.station-name{
+  color:#0D1B2A;
+}
+
+.cell-service{
+  border: none;
+  border-radius: 10px 10px 10px 10px;
+  padding: 10px;
+  background-color:#1B263B;
+  color: #E0E1DD; 
+  width:25%;
+  font-size:100%
+}
+
+.service-box{
+  border: none;
+  border-radius: 10px 10px 10px 10px;
+  background-color:#1B263B;
+  padding: 5%;
+  margin-top: auto;
+}
+
+.hazards-button{
+  border: none;
+  border-radius: 10px 10px 10px 10px;
+  padding: 10px;
+  background-color:#415A77;
+  color: #E0E1DD; 
+  width:40%;
+  font-size: 100%;
+}
+
+.hazards-box{
+  border: none;
+  border-radius: 10px 10px 10px 10px;
+  background-color:#415A77;
+  padding: 5%;
+  margin-top: auto;
+}
+
+.buttons-container{
+  margin-bottom: 3%;
+  flex:inline;
 }
