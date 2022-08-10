@@ -1,5 +1,9 @@
 var bubble;
 var display;
+var coords;
+var name;
+var datascore;
+
 function addMarkersToMap(map) {
   var icon = new H.map.Icon('https://media.discordapp.net/attachments/827947440945627167/1006985824560230501/blue-marker.png', { size: { w: 35.9, h: 50 } });
   var oneMarker = new H.map.Marker({ lat: 40.75641340801819, lng: -73.98701811453235 }, {icon: icon});
@@ -64,69 +68,10 @@ var map = new H.Map(document.getElementById('map'),
 
 map.addEventListener('tap', function(evt) {
 
-  var coords = evt.target.getGeometry().toString();
-  switch (coords) {
-    case "POINT (-73.98701811453235 40.75641340801819)":
-      var name = "Times Sq 42nd st";
-      break;
-    case "POINT (-73.97752984522153 40.753021136222415)":
-      var name = "Grand Central 42nd st";
-      break;
-    case "POINT (-73.98804119919043 40.75060674516795)":
-      var name = "34th st Herald Sq";
-      break;
-    case "POINT (-73.99038697247614 40.73526397230171)":
-      var name = "14th st Union Sq";
-      break;
-    case "POINT (-74.00833181211024 40.709651443071834)":
-      var name = "Fulton st";
-      break;
-    case "POINT (-73.9934788605656 40.75293886696237)":
-      var name = "34th st Penn Station";
-      break;
-    case "POINT (-73.98136799918349 40.76926930516256)":
-      var name = "59th st Columbus Circle";
-      break;
-    case "POINT (-73.89082696850369 40.74738892124231)":
-      var name = "74 Broadway";
-      break;
-    case "POINT (-73.83040571453132 40.7589188801231)":
-      var name = "Flushing Main st";
-      break;
-    case "POINT (-73.99217485316575 40.731242937854574)":
-      var name = "8th st";
-      break;
-    case "POINT (-74.00289137591425 40.74064995147205)":
-      var name = "14th st/8th Ave";
-      break;
-    case "POINT (-73.98629286850621 40.74067697084957)":
-      var name = "23rd st";
-      break;
-    case "POINT (-73.99096597591792 40.73071146341542)":
-      var name = "Astor Place";
-      break;
-    default:
-      var name = "N/A"
-  }
-  let datascore = 0;
-  let count = 0;
-  for(let i = 0; i < display.length; display++){
-    alert(display[i][0]);
-    if(display[i][0].toString() == name.toString()){
-      switch (display[i][2].toString()) {
-        case "3G/LTE":
-          datascore+=30+display[i][3];
-          break;
-        case "4G/5Ge":
-          datascore+=40+display[i][3];
-          break;
-        case "5G/5G+":
-          datascore+=50+display[i][3];
-          break;
-      }
-      count++;
-    }
-  }
+  coords = evt.target.getGeometry().toString();
+
+  name = getName(coords);
+  datascore = getScore(name);
   
   bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
     // read custom data
@@ -136,7 +81,7 @@ map.addEventListener('tap', function(evt) {
                 <button class='hazards-button' id='hazard-button' onClick='displayHaz()'>Hazards + Weather</button>
               </div>
               <div class = 'service-box'>
-                <p><b>Service Rating:</b> Insert</p>
+                <p><b>Service Rating:</b> ${datascore}</p>
               </div>`
   });
   // show info bubble
@@ -145,21 +90,24 @@ map.addEventListener('tap', function(evt) {
 
 
 function displayCell() {
+
+
   bubble.setContent(
-    `<h1 class='station-name'>Station Name</h1>
+    `<h1 class='station-name' id='Station-Name'>${name}</h1>
     <div class='buttons-container'>
       <button class='cell-service' id='cell-button' onClick='displayCell()'>Cell Service</button>
       <button class='hazards-button' id='hazard-button' onClick='displayHaz()'>Hazards + Weather</button>
     </div>
     <div class = 'service-box'>
-      <p><b>Service Rating:</b> Insert</p>
+      <p><b>Service Rating:</b> ${datascore}</p>
     </div>`
   );
 }
 
 function displayHaz() {
+  
   bubble.setContent(
-    `<h1 class='station-name'>Station Name</h1>
+    `<h1 class='station-name'>${name}</h1>
     <div class='buttons-container'>
       <button class='cell-service' id='cell-button' onClick='displayCell()'>Cell Service</button>
       <button class='hazards-button' id='hazard-button' onClick='displayHaz()'>Hazards + Weather</button>
@@ -212,3 +160,94 @@ var getJSON = function(url, callback) {
 
     xmlhttprequest.send();
 };
+
+function getName(coords) {
+  switch (coords.toString()) {
+    case "POINT (-73.98701811453235 40.75641340801819)":
+      var name = "Times Sq 42nd st";
+      break;
+    case "POINT (-73.97752984522153 40.753021136222415)":
+      var name = "Grand Central 42nd st";
+      break;
+    case "POINT (-73.98804119919043 40.75060674516795)":
+      var name = "34th st Herald Sq";
+      break;
+    case "POINT (-73.99038697247614 40.73526397230171)":
+      var name = "14th st Union Sq";
+      break;
+    case "POINT (-74.00833181211024 40.709651443071834)":
+      var name = "Fulton st";
+      break;
+    case "POINT (-73.9934788605656 40.75293886696237)":
+      var name = "34th st Penn Station";
+      break;
+    case "POINT (-73.98136799918349 40.76926930516256)":
+      var name = "59th st Columbus Circle";
+      break;
+    case "POINT (-73.89082696850369 40.74738892124231)":
+      var name = "74 Broadway";
+      break;
+    case "POINT (-73.83040571453132 40.7589188801231)":
+      var name = "Flushing Main st";
+      break;
+    case "POINT (-73.99217485316575 40.731242937854574)":
+      var name = "8th st";
+      break;
+    case "POINT (-74.00289137591425 40.74064995147205)":
+      var name = "14th st/8th Ave";
+      break;
+    case "POINT (-73.98629286850621 40.74067697084957)":
+      var name = "23rd st";
+      break;
+    case "POINT (-73.99096597591792 40.73071146341542)":
+      var name = "Astor Place";
+      break;
+    default:
+      var name = "N/A"
+  }
+  return name;
+}
+function getScore(name){
+  let name2 = name;
+  let datascore = 0;
+  let count = 0;
+  display = display;
+  for(let i = 0; i < display.length; display++){
+    alert(name2.toString());
+    if(display[i][0].toString() == name2.toString()){
+      if(display[i][3].toString() == "4+"){
+        datascore += 4;
+      }
+      else {
+        datascore += parseInt(display[i][3].toString());
+      }
+      switch (display[i][2].toString()) {
+        case "3G/LTE":
+          datascore+=30;
+          break;
+        case "4G/5Ge":
+          datascore+=40;
+          break;
+        case "5G/5G+":
+          datascore+=50;
+          break;
+      }
+      count++;
+    }
+  }
+  datascore = datascore/count;
+  switch (datascore%10) {
+    case 5:
+      datascore = "Good";
+      break;
+    case 4:
+      datascore = "Fair";
+      break;
+    case 3:
+      datascore = "Poor";
+      break;
+    default:
+      datascore = "N/A";
+  }
+  return datascore;
+}
