@@ -213,7 +213,6 @@ function getScore(name){
   let count = 0;
   display = display;
   for(let i = 0; i < display.length; display++){
-    alert(name2.toString());
     if(display[i][0].toString() == name2.toString()){
       if(display[i][3].toString() == "4+"){
         datascore += 4;
