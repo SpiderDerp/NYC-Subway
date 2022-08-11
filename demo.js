@@ -85,7 +85,16 @@ map.addEventListener('tap', function(evt) {
                 <button class='hazards-button' id='hazard-button' onClick='displayHaz()'>Hazards + Weather</button>
               </div>
               <div class = 'service-box'>
-                <p><b>Service Rating:</b> ${datascore}</p>
+                <p><b>Service Rating:</b> ${datascore.datascore}</p>
+                <p><b>Provider Breakdown:</b><br>
+                    AT&T: ${datascore.att}<br>
+                    T-Mobile: ${datascore.tmobile}<br>
+                    Verizon: ${datascore.verizon}<br>
+                    Sprint: ${datascore.sprint}<br>
+                    MetroPCS: ${datascore.metropcs}<br>
+                    Cricket: ${datascore.cricket}<br>
+                    Other: ${datascore.other}<br>
+                </p>
               </div>`
   });
   // show info bubble
@@ -228,6 +237,7 @@ function getScore(name) {
   let name2 = name;
   let datascore = 0;
   let count = 0;
+  let att = tmobile = verizon = sprint = metropcs = cricket = other = 0;
   display = display;
   for (let i = 0; i < display.length; i++) {
     if (display[i][0].toString().includes(name2.toString())) {
@@ -248,6 +258,29 @@ function getScore(name) {
           datascore += 50;
           break;
       }
+      switch (display[i][1].toString()) {
+        case "AT&T":
+          att++;
+          break;
+        case "T-Mobile":
+          tmobile++;
+          break;
+        case "Verizon":
+          verizon++;
+          break;
+        case "Sprint":
+          sprint++;
+          break;
+        case "MetroPCS":
+          metropcs++;
+          break;
+        case "Cricket":
+          cricket++;
+          break;
+        case "Other":
+          other++;
+          break;
+      }
       count++;
     }
   }
@@ -265,7 +298,7 @@ function getScore(name) {
     default:
       datascore = "N/A";
   }
-  return datascore;
+  return { datascore, att, tmobile, verizon, sprint, metropcs, cricket, other };
 }
 
 function getHazardCount(name) {
