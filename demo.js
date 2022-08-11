@@ -76,7 +76,7 @@ map.addEventListener('tap', function(evt) {
 
   name = getName(coords);
   datascore = getScore(name);
-
+  weatherData = getHazardCount(name);
   bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
     // read custom data
     content: `<h1 class='station-name' id='Station-Name'>${name}</h1>
@@ -104,7 +104,6 @@ map.addEventListener('tap', function(evt) {
 
 function displayCell() {
 
-
   bubble.setContent(
     `<h1 class='station-name' id='Station-Name'>${name}</h1>
     <div class='buttons-container'>
@@ -113,20 +112,29 @@ function displayCell() {
     </div>
     <div class = 'service-box'>
       <p><b>Service Rating:</b> ${datascore}</p>
+      <p><b>Provider Breakdown:</b><br>
+          AT&T: ${datascore.att}<br>
+          T-Mobile: ${datascore.tmobile}<br>
+          Verizon: ${datascore.verizon}<br>
+          Sprint: ${datascore.sprint}<br>
+          MetroPCS: ${datascore.metropcs}<br>
+          Cricket: ${datascore.cricket}<br>
+          Other: ${datascore.other}<br>
+      </p>
     </div>`
   );
 }
 
 function displayHaz() {
-
+  weatherData = weatherData;
   bubble.setContent(
     `<h1 class='station-name'>${name}</h1>
     <div class='buttons-container'>
       <button class='cell-service' id='cell-button' onClick='displayCell()'>Cell Service</button>
       <button class='hazards-button' id='hazard-button' onClick='displayHaz()'>Hazards + Weather</button>
     <div class = 'hazards-box'>
-      <p><b>Hazards Reported:</b> 0</p>
-      <p><b>Precipitation:</b> None</p>
+      <p><b>Hazards Reported:</b> ${weatherData.count}</p>
+      <p><b>Precipitation:</b> ${weatherData.lastWeather}</p>
     </div>`
   );
 }
@@ -305,26 +313,13 @@ function getHazardCount(name) {
   let name2 = name;
   let count = 0;
   weatherData = weatherData;
+  let lastWeather = "N/A";
   for (let i = 0; i < weatherData.length; i++) {
     if (weatherData[i][0].toString().includes(name2.toString())) {
-      if (weatherData[i][3].toString() == "4+") {
-        datascore += 4;
-      }
-      else {
-        datascore += parseInt(weatherData[i][3].toString());
-      }
-      switch (weatherData[i][2].toString()) {
-        case "3G/LTE":
-          datascore += 30;
-          break;
-        case "4G/5Ge":
-          datascore += 40;
-          break;
-        case "5G/5G+":
-          datascore += 50;
-          break;
-      }
-      count++;
+      if (weatherData[i][3].toString() != "None")
+        count++;
+      lastWeather = weatherData[i][1].toUpperCase();
     }
   }
+  return { count, lastWeather };
 }
