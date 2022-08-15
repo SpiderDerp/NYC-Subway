@@ -62,7 +62,7 @@
   background-color:#415A77;
   color: #E0E1DD; 
   width:40%;
-  font-size: 100%;
+  font-size: 90%;
 }
 
 .hazards-box{
@@ -76,4 +76,8 @@
 .buttons-container{
   margin-bottom: 3%;
   flex:inline;
+}
+
+.html, body {
+  background-color: #0D1B2A;
 }

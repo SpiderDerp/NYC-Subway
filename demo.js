@@ -4,9 +4,12 @@ var weatherData;
 var coords;
 var name;
 var datascore;
-
+//https://media.discordapp.net/attachments/827947440945627167/1006985824560230501/blue-marker.png
+//https://media.discordapp.net/attachments/827947440945627167/1008739838306029609/blue-marker.png
+//https://media.discordapp.net/attachments/827947440945627167/1008740342960504912/blue-marker.png
+//https://media.discordapp.net/attachments/827947440945627167/1008742666961424414/blue-marker.png
 function addMarkersToMap(map) {
-  var icon = new H.map.Icon('https://media.discordapp.net/attachments/827947440945627167/1006985824560230501/blue-marker.png', { size: { w: 35.9, h: 50 } });
+  var icon = new H.map.Icon('https://media.discordapp.net/attachments/827947440945627167/1008744283467173918/blue-marker.png?width=424&height=590', { size: { w: 35.9, h: 50 } });
   var oneMarker = new H.map.Marker({ lat: 40.75641340801819, lng: -73.98701811453235 }, { icon: icon });
   map.addObject(oneMarker);
 
@@ -64,12 +67,11 @@ var defaultLayers = platform.createDefaultLayers();
 
 //Step 2: initialize a map - this map is centered over Europe
 var map = new H.Map(document.getElementById('map'),
-  defaultLayers.vector.normal.map, {
+  defaultLayers.raster.normal.mapnight, {
   center: { lat: 40.732649357366284, lng: -73.99793998890864 },
   zoom: -9,
   pixelRatio: window.devicePixelRatio || 1
 });
-
 map.addEventListener('tap', function(evt) {
 
   coords = evt.target.getGeometry().toString();
@@ -103,7 +105,7 @@ map.addEventListener('tap', function(evt) {
 
 
 function displayCell() {
-
+  datascore = datascore;
   bubble.setContent(
     `<h1 class='station-name' id='Station-Name'>${name}</h1>
     <div class='buttons-container'>
@@ -111,7 +113,7 @@ function displayCell() {
       <button class='hazards-button' id='hazard-button' onClick='displayHaz()'>Hazards + Weather</button>
     </div>
     <div class = 'service-box'>
-      <p><b>Service Rating:</b> ${datascore}</p>
+      <p><b>Service Rating:</b> ${datascore.datascore}</p>
       <p><b>Provider Breakdown:</b><br>
           AT&T: ${datascore.att}<br>
           T-Mobile: ${datascore.tmobile}<br>
