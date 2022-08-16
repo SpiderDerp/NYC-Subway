@@ -52,6 +52,29 @@ function addMarkersToMap(map) {
   var fifteenMarker = new H.map.Marker({ lat: 40.68419913615695, lng: -73.97867156931275 }, { icon: icon });
   map.addObject(fifteenMarker);
 
+  var sixteenMarker = new H.map.Marker({ lat: 40.72594213392374, lng: -73.99466200600531}, { icon: icon });
+  map.addObject(sixteenMarker);
+
+  var seventeenMarker = new H.map.Marker({ lat: 40.72583672845734, lng: -74.00400575788326 }, { icon: icon });
+  map.addObject(seventeenMarker);
+
+  var eighteenMarker = new H.map.Marker({ lat: 40.719633688930394, lng: -74.001745815253 }, { icon: icon });
+  map.addObject(eighteenMarker);
+
+  var nineteenMarker = new H.map.Marker({ lat: 40.71201302816927, lng: -74.00501357107485}, { icon: icon });
+  map.addObject(nineteenMarker);
+
+  var twentyMarker = new H.map.Marker({ lat: 40.707746774840906, lng: -74.01168632874632}, { icon: icon });
+  map.addObject(twentyMarker);
+
+  var twentyoneMarker = new H.map.Marker({ lat: 40.704932778894815, lng: -74.0144917882671 }, { icon: icon });
+  map.addObject(twentyoneMarker);
+
+  var twentytwoMarker = new H.map.Marker({ lat: 40.69400759497469, lng: -73.99040172874662 }, { icon: icon });
+  map.addObject(twentytwoMarker);
+
+  var twentythreeMarker = new H.map.Marker({ lat: 40.57732852138938, lng: -73.98147353614705 }, { icon: icon });
+  map.addObject(twentythreeMarker);
 }
 
 function moveMapToNewYorkCity(map) {
@@ -237,6 +260,30 @@ function getName(coords) {
       break;
     case "POINT (-73.97867156931275 40.68419913615695)":
       var name = "Atlantic Ave-Barclays Ctr.";
+      break;
+    case "POINT (-73.99466200600531 40.72594213392374)":
+      var name = "Bleecker St.";
+      break;
+    case "POINT (-74.00400575788326 40.72583672845734)":
+      var name = "Spring St.";
+      break;
+    case "POINT (-74.001745815253 40.719633688930394)":
+      var name = "Canal St.";
+      break;
+    case "POINT (-74.00501357107485 40.71201302816927)":
+      var name = "Brooklyn Bridge-City Hall";
+      break;
+    case "POINT (-74.01168632874632 40.707746774840906)":
+      var name = "Wall St.";
+      break;
+    case "POINT (-74.0144917882671 40.704932778894815)":
+      var name = "Bowling Green";
+      break;
+    case "POINT (-73.99040172874662 40.69400759497469)":
+      var name = "Borough Hall";
+      break;
+    case "POINT (-73.98147353614705 40.57732852138938)":
+      var name = "Coney Island-Stillwell Ave.";
       break;
     default:
       var name = "N/A"
